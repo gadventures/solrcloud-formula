@@ -1,5 +1,5 @@
 {% set solr_url= salt['pillar.get']('solrcloud:solr_url', "http://www.eu.apache.org/dist/lucene/solr/") %}
-{% set solr_ver= salt['pillar.get']('solrcloud:solr_ver', "5.4.0") %}
+{% set solr_ver= salt['pillar.get']('solrcloud:solr_ver', "5.5.0") %}
 {% set solr_name= salt['pillar.get']('solrcloud:solr_name', "solr") %}
 {% set solr_logs= salt['pillar.get']('solrcloud:solr_logs', "/var/solr/logs/") %}
 {% set solr_data= salt['pillar.get']('solrcloud:solr_data', "/var/solr/data/") %}
@@ -114,6 +114,3 @@ solr_service:
     - watch:
       - file: {{solr_data}}solr.xml
       - file: {{solr_home}}log4j.properties
-
-
-

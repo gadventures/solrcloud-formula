@@ -1,6 +1,6 @@
 solrcloud:
   solr_url: http://www.eu.apache.org/dist/lucene/solr/
-  solr_ver: 5.4.0
+  solr_ver: 5.5.0
   solr_name: solr
   solr_logs: /var/solr/logs/
   solr_data: /var/solr/data/
@@ -11,10 +11,8 @@ solrcloud:
     servers:
       solr1:
         ip: 
-        id: '1'
       solr2:
         ip: 
-        id: '2'
   zoo_url: http://www.eu.apache.org/dist/zookeeper/
   zoo_ver: 3.4.7
   zoo_name: zookeeper
@@ -24,13 +22,6 @@ solrcloud:
   zoo_client_timeout: 30000
   zoo_cluster:
     servers:
-      zk1:
-        ip: 
-        id: '1'
-      zk2:
-        ip: 
-        id: '2'
-      zk3:
-        ip: 
-        id: '3'
-
+      - hostname1
+      - hostname2
+      - hostname3

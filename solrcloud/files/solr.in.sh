@@ -1,10 +1,7 @@
 {% set solr_home= salt['pillar.get']('solrcloud:solr_home', "/var/solr/") %}
 {% set solr_logs= salt['pillar.get']('solrcloud:solr_logs', "/var/solr/logs") %}
-
 {% set zk_timeout= salt['pillar.get']('solrcloud:zoo_client_timeout', '') %}
-{% set zk1= salt['pillar.get']('solrcloud:zoo_cluster:servers:zk1:ip', '') %}
-{% set zk2= salt['pillar.get']('solrcloud:zoo_cluster:servers:zk2:ip', '') %}
-{% set zk3= salt['pillar.get']('solrcloud:zoo_cluster:servers:zk3:ip', '') %}
+{% set zk_servers= salt['pillar.get']('solrcloud:zoo_cluster:servers', '') %}
 
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -58,7 +55,7 @@ GC_TUNE="-XX:NewRatio=3 \
 # Set the ZooKeeper connection string if using an external ZooKeeper ensemble
 # e.g. host1:2181,host2:2181/chroot
 # Leave empty if not using SolrCloud
-ZK_HOST="{{zk1}}:2181,{{zk2}}:2181,{{zk3}}:2181"
+ZK_HOST="{% for zk in zk_servers %}{{zk}}:2181{% if not loop.last %},{% endif %}{% endfor %}"
 
 # Set the ZooKeeper client timeout (for SolrCloud mode)
 ZK_CLIENT_TIMEOUT="{{zk_timeout}}"
